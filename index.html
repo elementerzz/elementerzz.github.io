@@ -1,168 +1,322 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="1561.61">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000; min-height: 14.0px}
-    span.s1 {font-kerning: none}
-    span.s2 {font: 12.0px 'Apple Color Emoji'; font-kerning: none}
-    td.td1 {margin: 0.5px 0.5px 0.5px 0.5px; padding: 1.0px 1.0px 1.0px 1.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>elementerzz's Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* A light grey background for a professional look */
+        }
+        /* Custom styles for the content to match the original feel */
+        .content-prose h1 {
+            font-size: 1.875rem; /* 30px */
+            font-weight: 800;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .content-prose h2 {
+            font-size: 1.5rem; /* 24px */
+            font-weight: 700;
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+         .content-prose h3 {
+            font-size: 1.25rem; /* 20px */
+            font-weight: 700;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .content-prose p {
+            font-size: 1rem; /* 16px */
+            line-height: 1.75;
+            margin-bottom: 1rem;
+        }
+         .content-prose ul, .content-prose ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+            list-style-position: inside;
+        }
+        .content-prose li {
+            margin-bottom: 0.5rem;
+        }
+        .content-prose a {
+            color: #2563eb;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+         .content-prose a:hover {
+            color: #1d4ed8;
+        }
+    </style>
 </head>
-<body>
-<table cellspacing="0" cellpadding="0">
-  <tbody>
-    <tr>
-      <td valign="middle" class="td1">
-        <p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
-        <p class="p1"><span class="s1">&lt;html lang="en"&gt;</span></p>
-        <p class="p1"><span class="s1">&lt;head&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8"&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;title&gt;Elementerzz Portfolio&lt;/title&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;style&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* Reset &amp; base */</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>* { margin: 0; padding: 0; box-sizing: border-box; }</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>body { font-family: Arial, sans-serif; line-height: 1.6; background: #f5f5f5; color: #333; }</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>a { color: #0066cc; text-decoration: none; }</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>a:hover { text-decoration: underline; }</span></p>
-        <p class="p2"><span class="s1"></span><br></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* Layout */</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>header, footer { background: #fff; padding: 1rem 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>nav { display: flex; justify-content: space-between; align-items: center; }</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>nav .logo { font-size: 1.5rem; font-weight: bold; }</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>nav .nav-links a { margin-left: 1rem; }</span></p>
-        <p class="p2"><span class="s1"></span><br></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>main { display: grid; grid-template-columns: 3fr 1fr; gap: 2rem; padding: 2rem; }</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>section { background: #fff; padding: 1.5rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 2rem; }</span></p>
-        <p class="p2"><span class="s1"></span><br></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* Hero */</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.hero { display: flex; align-items: center; }</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.hero img { border-radius: 50%; width: 120px; height: 120px; margin-right: 1.5rem; }</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.hero .info h1 { font-size: 2rem; margin-bottom: 0.5rem; }</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.hero .info p { color: #666; }</span></p>
-        <p class="p2"><span class="s1"></span><br></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* Bio */</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.bio h2 { margin-bottom: 0.5rem; }</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.bio p + p { margin-top: 0.75rem; }</span></p>
-        <p class="p2"><span class="s1"></span><br></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* Work History */</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.work-item { margin-bottom: 2rem; }</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.work-item h3 { margin-bottom: 0.25rem; }</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.work-item .meta { font-size: 0.9rem; color: #777; margin-bottom: 0.75rem; }</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.work-item .description p { margin-bottom: 0.5rem; }</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.work-item .images { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 0.5rem; margin-top: 1rem; }</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.work-item .images img { width: 100%; height: auto; background: #ddd; }</span></p>
-        <p class="p2"><span class="s1"></span><br></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* Sidebar */</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.sidebar section { margin-bottom: 2rem; }</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.sidebar h2 { margin-bottom: 0.5rem; }</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.chip { background: #e0e0e0; padding: 0.25rem 0.75rem; border-radius: 16px; font-size: 0.85rem; }</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.links li { margin-bottom: 0.5rem; }</span></p>
-        <p class="p2"><span class="s1"></span><br></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* Footer */</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>footer { text-align: center; font-size: 0.85rem; color: #777; }</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</span></p>
-        <p class="p1"><span class="s1">&lt;/head&gt;</span></p>
-        <p class="p1"><span class="s1">&lt;body&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;header&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;nav&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="logo"&gt;Creator Hub&lt;/div&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="nav-links"&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;a href="#"&gt;Dashboard&lt;/a&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;a href="#"&gt;Learn&lt;/a&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;a href="#"&gt;Store&lt;/a&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;a href="#"&gt;Talent&lt;/a&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/nav&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/header&gt;</span></p>
-        <p class="p2"><span class="s1"></span><br></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;main&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;!-- Left Column --&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;!-- Hero / Header --&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;section class="hero"&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;img src="placeholder-avatar.jpg" alt="elementerzz"&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="info"&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;h1&gt;elementerzz &lt;span&gt;</span><span class="s2">✔️</span><span class="s1">&lt;/span&gt;&lt;/h1&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;p&gt;@elementerzz&lt;/p&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</span></p>
-        <p class="p2"><span class="s1"></span><br></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;!-- Bio --&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;section class="bio"&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h2&gt;Bio&lt;/h2&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p&gt;</span><span class="s2">👋</span><span class="s1"> Hi there, I'm elementerzz!&lt;/p&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p&gt;I'm an experienced programmer in various game genres...&lt;/p&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</span></p>
-        <p class="p2"><span class="s1"></span><br></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;!-- Work History --&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;section class="work-history"&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h2&gt;Work History&lt;/h2&gt;</span></p>
-        <p class="p2"><span class="s1"></span><br></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;!-- Example Work Item --&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="work-item"&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Graphic Design Examples&lt;/h3&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="meta"&gt;Graphic Designer • Jan 2024 - Present&lt;/div&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="description"&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;p&gt;Here are some of my graphic design works!&lt;/p&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="images"&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;img src="placeholder-1.jpg" alt="Design 1"&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;img src="placeholder-2.jpg" alt="Design 2"&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;img src="placeholder-3.jpg" alt="Design 3"&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;img src="placeholder-4.jpg" alt="Design 4"&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-        <p class="p2"><span class="s1"></span><br></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;!-- Repeat .work-item blocks for each project --&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-        <p class="p2"><span class="s1"></span><br></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;!-- Right Column / Sidebar --&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;aside class="sidebar"&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;!-- Interests --&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;section&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h2&gt;Interest&lt;/h2&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p&gt;[Your interests here]&lt;/p&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</span></p>
-        <p class="p2"><span class="s1"></span><br></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;!-- Skills --&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;section&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h2&gt;Skills&lt;/h2&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="chips"&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="chip"&gt;Scripting&lt;/div&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="chip"&gt;Modeling&lt;/div&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="chip"&gt;UI Design&lt;/div&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;!-- more chips --&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</span></p>
-        <p class="p2"><span class="s1"></span><br></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;!-- Links --&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;section&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h2&gt;Links&lt;/h2&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;ul class="links"&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;li&gt;&lt;a href="#" target="_blank"&gt;Developer Forum&lt;/a&gt;&lt;/li&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;li&gt;&lt;a href="#" target="_blank"&gt;Roblox Profile&lt;/a&gt;&lt;/li&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/ul&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/aside&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/main&gt;</span></p>
-        <p class="p2"><span class="s1"></span><br></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;footer&gt;</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&amp;copy;2025 Your Name. All rights reserved.</span></p>
-        <p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/footer&gt;</span></p>
-        <p class="p1"><span class="s1">&lt;/body&gt;</span></p>
-        <p class="p1"><span class="s1">&lt;/html&gt;</span></p>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<body class="antialiased text-gray-800">
+
+    <!-- Main Container -->
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">elementerzz's Portfolio</h1>
+            <p class="mt-2 text-lg text-gray-600">Game Developer & Graphic Designer</p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+            <!-- Left Column: Bio -->
+            <aside class="lg:col-span-4">
+                <div class="bg-white p-6 rounded-2xl shadow-lg sticky top-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b pb-2">Bio</h2>
+                    <div class="space-y-4 content-prose">
+                        <h1>👋 Hi there, I'm elementerzz!</h1>
+                        <p>I'm an experienced programmer in many different game genres. I am experienced with obbies and simulators and other classical games. I have contributed to front-page games as well.</p>
+                        <p>I am also a graphic designer that can create many different designs. I am specifically skilled in the creation of simple and professional icons for games and groups, and for GUI in games.</p>
+                        <p><strong>I've contributed to over 300M visits</strong></p>
+                        <p>Feel free to hire me!</p>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Right Column: Work History -->
+            <main class="lg:col-span-8">
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b pb-3">Work History</h2>
+                    <div class="space-y-8">
+
+                        <!-- Project: Graphic Design -->
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="flex-shrink-0 flex justify-center md:justify-start">
+                                <div class="bg-blue-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
+                                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                </div>
+                            </div>
+                            <div class="flex-1 content-prose">
+                                <h3 class="text-xl font-bold mt-0">Graphic Design Examples</h3>
+                                <p class="text-md font-medium text-gray-700 !-mt-2">Graphic Designer</p>
+                                <p class="text-sm text-gray-500 !-mt-3">Jan 2024 - Present</p>
+                                <h2>Here are some of my graphic design works!</h2>
+                                <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 mt-4">
+                                    <img src="https://tr.rbxcdn.com/180DAY-bb6dec4ad7429ff02f71e88d5b0cb33b/150/150/Image/Png/noFilter" alt="Graphic Design Example 1" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                    <img src="https://tr.rbxcdn.com/180DAY-428d3da65efe5ecd085b995a6af90fee/150/150/Image/Png/noFilter" alt="Graphic Design Example 2" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                    <img src="https://tr.rbxcdn.com/180DAY-f057ebd38d0b2f755acdae15d1da9c96/150/150/Image/Png/noFilter" alt="Graphic Design Example 3" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                    <img src="https://tr.rbxcdn.com/180DAY-3a76c102db132d65b6c9d28345817773/150/150/Image/Png/noFilter" alt="Graphic Design Example 4" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                    <img src="https://tr.rbxcdn.com/180DAY-f08b116a064c4031a2a9d1198540fa09/150/150/Image/Png/noFilter" alt="Graphic Design Example 5" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                    <img src="https://tr.rbxcdn.com/180DAY-71f2d483ef0c958cdfd9763422c5aa0d/150/150/Image/Png/noFilter" alt="Graphic Design Example 6" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                    <img src="https://tr.rbxcdn.com/180DAY-223a3c0dec95a021dc9e5efee21aa37e/150/150/Image/Png/noFilter" alt="Graphic Design Example 7" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                    <img src="https://tr.rbxcdn.com/180DAY-f9755976cb4a391c0085fb2001049fcd/150/150/Image/Png/noFilter" alt="Graphic Design Example 8" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                    <img src="https://tr.rbxcdn.com/180DAY-bb991054ec817d1c532677f5666a8ef5/150/150/Image/Png/noFilter" alt="Graphic Design Example 9" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="border-gray-200">
+
+                        <!-- Project: PLS SHOP! -->
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="flex-shrink-0 flex justify-center md:justify-start">
+                                <div class="bg-green-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
+                                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                </div>
+                            </div>
+                            <div class="flex-1 content-prose">
+                                <h3 class="text-xl font-bold mt-0">PLS SHOP! (Donation Game)</h3>
+                                <p class="text-md font-medium text-gray-700 !-mt-2">Modeller at Greater Studios!</p>
+                                <p class="text-sm text-gray-500 !-mt-3">Jan 2023 - Present</p>
+                                <h1>💸 PLS SHOP PROJECT</h1>
+                                <p>In this project that I helped work on, the main idea of the game is to go up to players' shops and donate to them.</p>
+                                <p>I helped by creating multiple assets for the game. Some of these assets include:</p>
+                                <ol>
+                                    <li>Normal Trees</li>
+                                    <li>Berry Trees</li>
+                                    <li>Pine Trees</li>
+                                    <li>Bushes</li>
+                                    <li>Berry Bushes</li>
+                                </ol>
+                                <h2><a href="https://www.roblox.com/games/12338682025/PLS-SHOP-Donation-Game" target="_blank" rel="noopener noreferrer">💸 PLS SHOP!</a></h2>
+                                <div class="grid grid-cols-3 sm:grid-cols-4 gap-4 mt-4">
+                                    <img src="https://tr.rbxcdn.com/180DAY-1cfeaafa7b7cdd379d8f72b1f3a1b105/150/150/Image/Png/noFilter" alt="PLS SHOP Image 1" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                    <img src="https://tr.rbxcdn.com/180DAY-72ba5506155976dea211f39161c3d666/150/150/Image/Png/noFilter" alt="PLS SHOP Image 2" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                    <img src="https://tr.rbxcdn.com/180DAY-8662445b6217e321e21bb0d17ae48e6e/150/150/Image/Png/noFilter" alt="PLS SHOP Image 3" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <hr class="border-gray-200">
+
+                        <!-- Project: Tower of Explosions -->
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="flex-shrink-0 flex justify-center md:justify-start">
+                                <div class="bg-red-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
+                                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                </div>
+                            </div>
+                            <div class="flex-1 content-prose">
+                                <h3 class="text-xl font-bold mt-0">Tower of Explosions</h3>
+                                <p class="text-md font-medium text-gray-700 !-mt-2">Main Scripter | Builder | GUI at Greater Studios</p>
+                                <p class="text-sm text-gray-500 !-mt-3">Jan 2023 - Present</p>
+                                <h1>💥 Tower of Explosions Project</h1>
+                                <p>In this game you try to reach the top of a randomly generated tower filled with challenging stages. In the middle of every round, bombs drop and players have to try and avoid them.</p>
+                                <p>My job in this game was mainly to script but also to build.</p>
+                                <p>I scripted the <em>main framework</em> of the game that made it work and also many other parts of the game. I also created and scripted the entire crate system and I created all the different halos. Some of the halos also have effects e.g the hacker halo, forest halo, dizzy halo etc. I also made some of the stages. I scripted most of the GUI in the game.</p>
+                                <h2><a href="https://www.roblox.com/games/12504463969/HALOS-Tower-of-Explosions" target="_blank" rel="noopener noreferrer">💥 Tower of Explosions</a></h2>
+                                <p>We also have a Discord Community Server attached to the game.</p>
+                                <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 mt-4">
+                                    <img src="https://tr.rbxcdn.com/180DAY-82e33d4fde9a4ee178de83ddc2a29f3b/150/150/Image/Png/noFilter" alt="Tower of Explosions Image 1" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                    <img src="https://tr.rbxcdn.com/180DAY-bd8bbdbda8c5fe31df7121d5987305b1/150/150/Image/Png/noFilter" alt="Tower of Explosions Image 2" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                    <img src="https://tr.rbxcdn.com/180DAY-16f9adf7921ece453dda6013b9caac61/150/150/Image/Png/noFilter" alt="Tower of Explosions Image 3" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                    <img src="https://tr.rbxcdn.com/180DAY-2235064d26bb86f65429e468799fa252/150/150/Image/Png/noFilter" alt="Tower of Explosions Image 4" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                    <img src="https://tr.rbxcdn.com/180DAY-8f2170dfb6c8f49ec732230a96428954/150/150/Image/Png/noFilter" alt="Tower of Explosions Image 5" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="border-gray-200">
+
+                         <!-- Project: Long Jump Obby -->
+                        <div class="flex flex-col md:flex-row gap-6">
+                           <div class="flex-shrink-0 flex justify-center md:justify-start">
+                                <div class="bg-purple-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
+                                     <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                </div>
+                            </div>
+                            <div class="flex-1 content-prose">
+                                <h3 class="text-xl font-bold mt-0">Long Jump Difficulty Chart Obby</h3>
+                                <p class="text-md font-medium text-gray-700 !-mt-2">Creator</p>
+                                <p class="text-sm text-gray-500 !-mt-3">Dec 2022 - Present</p>
+                                <h1>Stud Long Jump Difficulty Chart Obby Project!</h1>
+                                <p>In this game players can test their skill by seeing how far they can jump in this obby. The obby is categorised into different difficulties, progressively getting harder as the players beat the stages.</p>
+                                <p>I entirely scripted and built the game. One interesting part of this game that I had to script was the automatic generation of the stages. There is only one stage template that is duplicated and categorised into different difficulties in one script. I had to use <em>nth term</em> to correctly position each platform and stage.</p>
+                                <p><a href="https://www.roblox.com/games/11933559184/Stud-Long-Jump-Difficulty-Chart-Obby" target="_blank" rel="noopener noreferrer">Stud Long Jump Difficulty Chart Obby</a></p>
+                                <div class="grid grid-cols-3 sm:grid-cols-4 gap-4 mt-4">
+                                    <img src="https://tr.rbxcdn.com/180DAY-f35306e915678c5e8a35d819b684fd68/150/150/Image/Png/noFilter" alt="Long Jump Obby Image 1" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                    <img src="https://tr.rbxcdn.com/180DAY-cc5de6f300f63e499f1580ee13582413/150/150/Image/Png/noFilter" alt="Long Jump Obby Image 2" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <hr class="border-gray-200">
+                         
+                        <!-- Project: How far can you jump -->
+                        <div class="flex flex-col md:flex-row gap-6">
+                           <div class="flex-shrink-0 flex justify-center md:justify-start">
+                                <div class="bg-yellow-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
+                                     <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                </div>
+                            </div>
+                            <div class="flex-1 content-prose">
+                                <h3 class="text-xl font-bold mt-0">🚀 How far can you jump!</h3>
+                                <p class="text-md font-medium text-gray-700 !-mt-2">Creator</p>
+                                <p class="text-sm text-gray-500 !-mt-3">Oct 2022 - Present</p>
+                                <h1>🚀 How far can you jump Project!</h1>
+                                <p>In this game, you can run across a runway then jump at the end. Players have to try and reach as far as they can, and they can achieve this by buying upgrades in the shop.</p>
+                                <p>The game was entirely scripted by me and also entirely built by me.</p>
+                                <h2><a href="https://www.roblox.com/games/11273527485/FREE-ADMIN-How-far-can-you-jump" target="_blank" rel="noopener noreferrer">🚀 How far can you jump!</a></h2>
+                                <div class="grid grid-cols-3 sm:grid-cols-4 gap-4 mt-4">
+                                     <img src="https://tr.rbxcdn.com/180DAY-97eb674934440ac26d84f73a5be01705/150/150/Image/Png/noFilter" alt="How far can you jump Image 1" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="border-gray-200">
+
+                        <!-- Project: Noob's Difficulty Chart Obby -->
+                        <div class="flex flex-col md:flex-row gap-6">
+                           <div class="flex-shrink-0 flex justify-center md:justify-start">
+                                <div class="bg-indigo-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
+                                     <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                </div>
+                            </div>
+                            <div class="flex-1 content-prose">
+                                <h3 class="text-xl font-bold mt-0">Noob's Difficulty Chart Obby</h3>
+                                <p class="text-md font-medium text-gray-700 !-mt-2">Creator at The Noob's</p>
+                                <p class="text-sm text-gray-500 !-mt-3">Oct 2022 - Present</p>
+                                <h1>Noob's Difficulty Chart Obby Project!</h1>
+                                <p>This game is a classic Difficulty Chart Obby. Players make their way through challenging stages that progressively get harder. There are multiple difficulties and there are still some more to come!</p>
+                                <p>For this game I am the the Main Scripter and Main Builder. Others have helped with some of the stages as well. I scripted the main backbone of the game and everything else such as GUI, Stage Transfer etc. I also made most of the stages. I also made all of the unique obby parts. An interesting part about them is that, I made a script that makes it so, if you name a part a specific name, it becomes that unique obby part.</p>
+                                <p>e.g If you name a part "SpinningPart", and inside the part you put an axis value determining which axis it is to spin on and a speed value determining the speed, it automatically makes the part work without the need of adding any more scripts.</p>
+                                <p>It can be done with many other obby parts as well such as: "PusherPart", "KillPart", "DamageBrick" etc.</p>
+                                <p>I made a game that showcases all of this and you can see it <strong><a href="https://www.roblox.com/games/12008992017/Elements-Obby-Kit-Showcase" target="_blank" rel="noopener noreferrer">here</a></strong>.</p>
+                                <h3>This game is still an ongoing project so more stages are to come soon!</h3>
+                                <h2><a href="https://www.roblox.com/games/11291357683/Noobs-Difficulty-Chart-Obby-WIP" target="_blank" rel="noopener noreferrer">Noob's Difficulty Chart Obby</a></h2>
+                                <div class="grid grid-cols-3 sm:grid-cols-4 gap-4 mt-4">
+                                     <img src="https://tr.rbxcdn.com/180DAY-feaf0c9d6e8b29cd74df02d82f91f5fd/150/150/Image/Png/noFilter" alt="Noob's DCO Image 1" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="border-gray-200">
+
+                        <!-- Project: UGC Portfolio -->
+                        <div class="flex flex-col md:flex-row gap-6">
+                           <div class="flex-shrink-0 flex justify-center md:justify-start">
+                                <div class="bg-pink-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
+                                     <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                </div>
+                            </div>
+                            <div class="flex-1 content-prose">
+                                <h3 class="text-xl font-bold mt-0">UGC Portfolio</h3>
+                                <p class="text-md font-medium text-gray-700 !-mt-2">Modeller, Texturer</p>
+                                <p class="text-sm text-gray-500 !-mt-3">Mar 2022 - Present</p>
+                                <h1>⭐ My UGC Portfolio ⭐</h1>
+                                <p>Here I am showcasing some of my creations. I'm trying to get better and eventually get into the <strong>UGC Program!</strong></p>
+                                <h3>I hope you like them!</h3>
+                                <div class="grid grid-cols-3 sm:grid-cols-4 gap-4 mt-4">
+                                     <img src="https://tr.rbxcdn.com/180DAY-cc004d432851804d54111de9a47accca/150/150/Image/Png/noFilter" alt="UGC Example 1" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                     <img src="https://tr.rbxcdn.com/180DAY-99ee1a6b9fba375f9497359b5c022606/150/150/Image/Png/noFilter" alt="UGC Example 2" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                     <img src="https://tr.rbxcdn.com/180DAY-f3d354111c2926972cb8798285842ba9/150/150/Image/Png/noFilter" alt="UGC Example 3" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                     <img src="https://tr.rbxcdn.com/180DAY-2c4e650341e206f42cc7eea10164874a/150/150/Image/Png/noFilter" alt="UGC Example 4" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <hr class="border-gray-200">
+
+                        <!-- Project: Race A Friend! -->
+                        <div class="flex flex-col md:flex-row gap-6">
+                           <div class="flex-shrink-0 flex justify-center md:justify-start">
+                                <div class="bg-teal-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
+                                     <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                </div>
+                            </div>
+                            <div class="flex-1 content-prose">
+                                <h3 class="text-xl font-bold mt-0">Race A Friend!</h3>
+                                <p class="text-md font-medium text-gray-700 !-mt-2">Scripter at Soap!</p>
+                                <p class="text-sm text-gray-500 !-mt-3">Jul 2023 - Sep 2023</p>
+                                <h1>🏁 Race A Friend Project!</h1>
+                                <p>This was a <strong>simulator</strong> type project. In this game, you gain speed by training on treadmills and you can then race different NPCs (that are dressed as your friends) to earn wins. You can then hatch pets with these wins and go to different zones.</p>
+                                <p>My job in this game was to help <strong>fix bugs</strong> and to add <strong>new features</strong> that made the game easier to play. I also helped in the <strong>scripting</strong> of <strong>new zones</strong> and some of the framework of the game.</p>
+                                <p>There is also another game uploaded by the same group (Soap!) called <em><strong>"Skate Battle Simulator"</strong></em> which is pretty much the same concept but with skateboards. The code was transferred to that game which means I have also played a part in there.</p>
+                                <p>The <em>'Soap!'</em> group also has a <em><strong>Discord community server.</strong></em> I am currently part of the <strong>Administration Team</strong> and I help out our players who require assistance and I also help with other things.</p>
+                                <h2><a href="https://www.roblox.com/games/14018688391/Race-A-Friend" target="_blank" rel="noopener noreferrer">Race A Friend!</a></h2>
+                                <h2><a href="https://www.roblox.com/games/14555484666/Skate-Battle-Simulator" target="_blank" rel="noopener noreferrer">Skate Battle Simulator</a></h2>
+                                <h1><a href="https://www.roblox.com/groups/17016662/Soap/" target="_blank" rel="noopener noreferrer">Soap!</a></h1>
+                                <!-- The community server link was not provided in the source -->
+                                <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 mt-4">
+                                     <img src="https://tr.rbxcdn.com/180DAY-b1d92db52605f4f475881790a80b9bfb/150/150/Image/Png/noFilter" alt="Race A Friend Image 1" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                     <img src="https://tr.rbxcdn.com/180DAY-fd1ce30e422858e85d605c75e762db8b/150/150/Image/Png/noFilter" alt="Race A Friend Image 2" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                     <img src="https://tr.rbxcdn.com/180DAY-72088a6410e349e6c783004442e8bf32/150/150/Image/Png/noFilter" alt="Race A Friend Image 3" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                     <img src="https://tr.rbxcdn.com/180DAY-3d6e34247a73d75323d3e77cdf0bcb18/150/150/Image/Png/noFilter" alt="Race A Friend Image 4" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                     <img src="https://tr.rbxcdn.com/180DAY-921aa1f7eba1f3e1c2d133c2f3feb833/150/150/Image/Png/noFilter" alt="Race A Friend Image 5" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </main>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="text-center mt-12 py-6 border-t border-gray-200">
+            <p class="text-gray-500">&copy; 2024 elementerzz. All rights reserved.</p>
+        </footer>
+
+    </div>
+
 </body>
 </html>
