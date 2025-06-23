@@ -3,30 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio for elementerzz, a Roblox Game Developer and Graphic Designer with experience in scripting, modeling, and GUI design.">
+    <link rel="icon" type="image/png" href="https://via.placeholder.co/32x32/000000/FFFFFF?text=E"> <!-- Minimalist 'E' icon -->
     <title>elementerzz's Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Fancybox CSS for image lightbox -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
     <style>
+        :root {
+            --color-roblox-blue: #00BFDD;
+            --color-roblox-dark-blue: #0050B4;
+            --color-discord-purple: #5865F2;
+            --color-discord-dark: #23272A;
+            --color-text-light: #fefefe; /* For text on dark backgrounds */
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f0f2f5; /* A light grey background for a professional look */
+            opacity: 0; /* Hidden initially for fade-in effect */
+            transition: opacity 1s ease-in-out;
         }
-        /* Custom styles for the content to match the original feel */
-        .content-prose h1 {
+        body.loaded {
+            opacity: 1;
+        }
+
+        /* Custom styles for content typography to match the original feel */
+        .content-prose h1 { /* This h1 is for the main page title, but within content-prose it should be lower */
             font-size: 1.875rem; /* 30px */
             font-weight: 800;
             margin-top: 1.5rem;
             margin-bottom: 0.5rem;
         }
-        .content-prose h2 {
+        .content-prose h2 { /* Project section titles (e.g., "Graphic Design Examples") */
             font-size: 1.5rem; /* 24px */
             font-weight: 700;
             margin-top: 1.25rem;
             margin-bottom: 0.5rem;
         }
-         .content-prose h3 {
+         .content-prose h3 { /* Sub-sections within projects (e.g., "💸 PLS SHOP PROJECT") */
             font-size: 1.25rem; /* 20px */
             font-weight: 700;
             margin-top: 1rem;
@@ -53,81 +71,275 @@
          .content-prose a:hover {
             color: #1d4ed8;
         }
+
+        /* Modal specific styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.6); /* Darker overlay */
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeInOverlay 0.3s ease-out;
+        }
+
+        @keyframes fadeInOverlay {
+            from { background-color: rgba(0,0,0,0); }
+            to { background-color: rgba(0,0,0,0.6); }
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            padding: 30px; /* More padding for a cleaner look */
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25); /* Stronger shadow */
+            max-width: 480px; /* Slightly wider */
+            width: 90%;
+            position: relative;
+            text-align: center;
+            animation: fadeInScale 0.3s ease-out; /* Pop-in animation */
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9) translateY(-20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .close-button {
+            color: #888; /* Softer grey */
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.2s ease;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #333;
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 15px; /* Spacing between cards */
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .contact-card svg {
+            margin-right: 12px;
+            width: 28px; /* Larger icons */
+            height: 28px;
+        }
+
+        .roblox-card {
+            background-color: var(--color-roblox-blue);
+            color: var(--color-text-light);
+        }
+        .roblox-card svg {
+            fill: var(--color-text-light); /* Fill for Roblox icon if it's a shape */
+            stroke: var(--color-text-light); /* Stroke for Roblox icon if it's a path */
+        }
+        .roblox-card a {
+            color: var(--color-text-light);
+            text-decoration: none; /* No underline by default, can add on hover */
+            transition: text-decoration 0.2s ease;
+        }
+        .roblox-card a:hover {
+            text-decoration: underline;
+        }
+
+        .discord-card {
+            background-color: var(--color-discord-purple);
+            color: var(--color-text-light);
+        }
+        .discord-card svg {
+            fill: var(--color-text-light);
+        }
+        /* General content box animations */
+        .content-box {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .content-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
     </style>
 </head>
 <body class="antialiased text-gray-800">
 
+    <!-- Fancybox JS for image lightbox -->
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script>
+      Fancybox.bind("[data-fancybox]", {
+        // Your custom options go here.
+        // For example, to enable fullscreen and thumbs, you might use:
+        // buttons: ["zoom", "slideShow", "fullScreen", "thumbs", "close"]
+      });
+
+      /**
+       * Displays the contact modal.
+       */
+      function showContactModal() {
+          const modal = document.getElementById('contactModal');
+          modal.style.display = 'flex'; // Use flex to center the modal
+      }
+
+      /**
+       * Hides the contact modal.
+       */
+      function hideContactModal() {
+          const modal = document.getElementById('contactModal');
+          modal.style.display = 'none';
+      }
+
+      // Add event listeners once the DOM is fully loaded
+      document.addEventListener('DOMContentLoaded', () => {
+          // Add 'loaded' class to body for fade-in effect
+          document.body.classList.add('loaded');
+
+          // Attach event listener to the "Hire Me" button
+          document.getElementById('hireMeBtn').addEventListener('click', showContactModal);
+
+          // Close modal when close button is clicked
+          document.querySelector('.close-button').addEventListener('click', hideContactModal);
+          
+          // Close modal when clicking outside of the modal content
+          window.addEventListener('click', (event) => {
+              const modal = document.getElementById('contactModal');
+              if (event.target == modal) {
+                  hideContactModal();
+              }
+          });
+      });
+    </script>
+
     <!-- Main Container -->
     <div class="container mx-auto p-4 md:p-8 max-w-6xl">
 
-        <!-- Header -->
+        <!-- Header Section -->
         <header class="text-center mb-12">
+            <!-- Main H1 for the page title, semantically correct -->
             <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">elementerzz's Portfolio</h1>
             <p class="mt-2 text-lg text-gray-600">Game Developer & Graphic Designer</p>
         </header>
 
+        <!-- Grid Layout for Bio and Work History -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
-            <!-- Left Column: Bio -->
+            <!-- Left Column: Bio Section -->
             <aside class="lg:col-span-4">
-                <div class="bg-white p-6 rounded-2xl shadow-lg sticky top-8">
+                <div class="bg-white p-6 rounded-2xl shadow-lg sticky top-8 content-box">
                     <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b pb-2">Bio</h2>
                     <div class="space-y-4 content-prose">
-                        <h1>👋 Hi there, I'm elementerzz!</h1>
+                        <h3>👋 Hi there, I'm elementerzz!</h3>
                         <p>I'm an experienced programmer in many different game genres. I am experienced with obbies and simulators and other classical games. I have contributed to front-page games as well.</p>
                         <p>I am also a graphic designer that can create many different designs. I am specifically skilled in the creation of simple and professional icons for games and groups, and for GUI in games.</p>
                         <p><strong>I've contributed to over 300M visits</strong></p>
-                        <p>Feel free to hire me!</p>
+                    </div>
+
+                    <!-- Call to Action Section -->
+                    <div class="mt-6">
+                         <!-- Modified "Hire Me" button to open the contact modal -->
+                         <button id="hireMeBtn" class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg inline-block text-center hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105 active:scale-95">
+                            Hire Me
+                         </button>
+                         <!-- Social links removed as requested -->
                     </div>
                 </div>
             </aside>
 
-            <!-- Right Column: Work History -->
+            <!-- Right Column: Work History Section -->
             <main class="lg:col-span-8">
-                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                <div class="bg-white p-6 rounded-2xl shadow-lg content-box">
+                    <!-- Section Title is H2, semantically correct -->
                     <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b pb-3">Work History</h2>
                     <div class="space-y-8">
 
-                        <!-- Project: Graphic Design -->
+                        <!-- Project Entry: Graphic Design -->
                         <div class="flex flex-col md:flex-row gap-6">
                             <div class="flex-shrink-0 flex justify-center md:justify-start">
+                                <!-- Updated Icon: Paintbrush for Graphic Design (Lucide) -->
                                 <div class="bg-blue-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
-                                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-paintbrush w-7 h-7">
+                                        <path d="M18.37 2.63c-1.3-.9-3.33-.9-4.64 0l-9.13 9.13a4 4 0 0 0-1.25 2.76V21h4.6c1.13 0 2.2-.42 3.03-1.25L21.37 7c.9-.89.9-2.32 0-3.22s-2.32-.89-3.22 0Z"/>
+                                        <path d="M19 12.25 9.75 3"/>
+                                        <path d="M7.07 11.5L11.5 7.07"/>
+                                    </svg>
                                 </div>
                             </div>
                             <div class="flex-1 content-prose">
                                 <h3 class="text-xl font-bold mt-0">Graphic Design Examples</h3>
                                 <p class="text-md font-medium text-gray-700 !-mt-2">Graphic Designer</p>
-                                <p class="text-sm text-gray-500 !-mt-3">Jan 2024 - Present</p>
-                                <h2>Here are some of my graphic design works!</h2>
+                                <h4>Here are some of my graphic design works!</h4>
                                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 mt-4">
-                                    <img src="https://tr.rbxcdn.com/180DAY-bb6dec4ad7429ff02f71e88d5b0cb33b/150/150/Image/Png/noFilter" alt="Graphic Design Example 1" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
-                                    <img src="https://tr.rbxcdn.com/180DAY-428d3da65efe5ecd085b995a6af90fee/150/150/Image/Png/noFilter" alt="Graphic Design Example 2" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
-                                    <img src="https://tr.rbxcdn.com/180DAY-f057ebd38d0b2f755acdae15d1da9c96/150/150/Image/Png/noFilter" alt="Graphic Design Example 3" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
-                                    <img src="https://tr.rbxcdn.com/180DAY-3a76c102db132d65b6c9d28345817773/150/150/Image/Png/noFilter" alt="Graphic Design Example 4" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
-                                    <img src="https://tr.rbxcdn.com/180DAY-f08b116a064c4031a2a9d1198540fa09/150/150/Image/Png/noFilter" alt="Graphic Design Example 5" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
-                                    <img src="https://tr.rbxcdn.com/180DAY-71f2d483ef0c958cdfd9763422c5aa0d/150/150/Image/Png/noFilter" alt="Graphic Design Example 6" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
-                                    <img src="https://tr.rbxcdn.com/180DAY-223a3c0dec95a021dc9e5efee21aa37e/150/150/Image/Png/noFilter" alt="Graphic Design Example 7" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
-                                    <img src="https://tr.rbxcdn.com/180DAY-f9755976cb4a391c0085fb2001049fcd/150/150/Image/Png/noFilter" alt="Graphic Design Example 8" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
-                                    <img src="https://tr.rbxcdn.com/180DAY-bb991054ec817d1c532677f5666a8ef5/150/150/Image/Png/noFilter" alt="Graphic Design Example 9" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                    <a href="https://tr.rbxcdn.com/180DAY-bb6dec4ad7429ff02f71e88d5b0cb33b/420/420/Image/Png/noFilter" data-fancybox="gallery-graphic-design">
+                                        <img src="https://tr.rbxcdn.com/180DAY-bb6dec4ad7429ff02f71e88d5b0cb33b/150/150/Image/Png/noFilter" alt="Roblox game logo with 'Obby' in bold text and a stylized 'O'" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                    </a>
+                                    <a href="https://tr.rbxcdn.com/180DAY-428d3da65efe5ecd085b995a6af90fee/420/420/Image/Png/noFilter" data-fancybox="gallery-graphic-design">
+                                        <img src="https://tr.rbxcdn.com/180DAY-428d3da65efe5ecd085b995a6af90fee/150/150/Image/Png/noFilter" alt="Roblox game icon featuring a cute blue character with a pickaxe for a simulator game" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                    </a>
+                                    <a href="https://tr.rbxcdn.com/180DAY-f057ebd38d0b2f755acdae15d1da9c96/420/420/Image/Png/noFilter" data-fancybox="gallery-graphic-design">
+                                        <img src="https://tr.rbxcdn.com/180DAY-f057ebd38d0b2f755acdae15d1da9c96/150/150/Image/Png/noFilter" alt="Roblox group icon with a simple, modern 'L' design" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                    </a>
+                                    <a href="https://tr.rbxcdn.com/180DAY-3a76c102db132d65b6c9d28345817773/420/420/Image/Png/noFilter" data-fancybox="gallery-graphic-design">
+                                        <img src="https://tr.rbxcdn.com/180DAY-3a76c102db132d65b6c9d28345817773/150/150/Image/Png/noFilter" alt="Roblox game logo with a yellow 'Simulator' title and star elements" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                    </a>
+                                    <a href="https://tr.rbxcdn.com/180DAY-f08b116a064c4031a2a9d1198540fa09/420/420/Image/Png/noFilter" data-fancybox="gallery-graphic-design">
+                                        <img src="https://tr.rbxcdn.com/180DAY-f08b116a064c4031a2a9d1198540fa09/150/150/Image/Png/noFilter" alt="Roblox game icon with a stylized 'R' and abstract shapes" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                    </a>
+                                    <a href="https://tr.rbxcdn.com/180DAY-71f2d483ef0c958cdfd9763422c5aa0d/420/420/Image/Png/noFilter" data-fancybox="gallery-graphic-design">
+                                        <img src="https://tr.rbxcdn.com/180DAY-71f2d483ef0c958cdfd9763422c5aa0d/150/150/Image/Png/noFilter" alt="Roblox game icon featuring a purple gradient and abstract lines" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                    </a>
+                                    <a href="https://tr.rbxcdn.com/180DAY-223a3c0dec95a021dc9e5efee21aa37e/420/420/Image/Png/noFilter" data-fancybox="gallery-graphic-design">
+                                        <img src="https://tr.rbxcdn.com/180DAY-223a3c0dec95a021dc9e5efee21aa37e/150/150/Image/Png/noFilter" alt="Roblox game icon for 'Noob's Difficulty Chart Obby' with a noob character" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                    </a>
+                                    <a href="https://tr.rbxcdn.com/180DAY-f9755976cb4a391c0085fb2001049fcd/420/420/Image/Png/noFilter" data-fancybox="gallery-graphic-design">
+                                        <img src="https://tr.rbxcdn.com/180DAY-f9755976cb4a391c0085fb2001049fcd/150/150/Image/Png/noFilter" alt="Roblox game icon with a green and yellow color scheme, featuring a play button" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                    </a>
+                                    <a href="https://tr.rbxcdn.com/180DAY-bb991054ec817d1c532677f5666a8ef5/420/420/Image/Png/noFilter" data-fancybox="gallery-graphic-design">
+                                        <img src="https://tr.rbxcdn.com/180DAY-bb991054ec817d1c532677f5666a8ef5/150/150/Image/Png/noFilter" alt="Roblox game icon with abstract blue and pink shapes" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                    </a>
                                 </div>
                             </div>
                         </div>
 
                         <hr class="border-gray-200">
 
-                        <!-- Project: PLS SHOP! -->
+                        <!-- Project Entry: PLS SHOP! -->
                         <div class="flex flex-col md:flex-row gap-6">
                             <div class="flex-shrink-0 flex justify-center md:justify-start">
+                                <!-- Icon: 3D Cube for Modeling (Heroicons, kept as it's clear) -->
                                 <div class="bg-green-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
-                                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+                                    </svg>
                                 </div>
                             </div>
                             <div class="flex-1 content-prose">
                                 <h3 class="text-xl font-bold mt-0">PLS SHOP! (Donation Game)</h3>
                                 <p class="text-md font-medium text-gray-700 !-mt-2">Modeller at Greater Studios!</p>
-                                <p class="text-sm text-gray-500 !-mt-3">Jan 2023 - Present</p>
-                                <h1>💸 PLS SHOP PROJECT</h1>
+                                <h4>💸 PLS SHOP PROJECT</h4>
                                 <p>In this project that I helped work on, the main idea of the game is to go up to players' shops and donate to them.</p>
                                 <p>I helped by creating multiple assets for the game. Some of these assets include:</p>
                                 <ol>
@@ -137,171 +349,238 @@
                                     <li>Bushes</li>
                                     <li>Berry Bushes</li>
                                 </ol>
-                                <h2><a href="https://www.roblox.com/games/12338682025/PLS-SHOP-Donation-Game" target="_blank" rel="noopener noreferrer">💸 PLS SHOP!</a></h2>
+                                <!-- External Link Heading is H3 -->
+                                <h3><a href="https://www.roblox.com/games/12338682025/PLS-SHOP-Donation-Game" target="_blank" rel="noopener noreferrer">💸 PLS SHOP!</a></h3>
                                 <div class="grid grid-cols-3 sm:grid-cols-4 gap-4 mt-4">
-                                    <img src="https://tr.rbxcdn.com/180DAY-1cfeaafa7b7cdd379d8f72b1f3a1b105/150/150/Image/Png/noFilter" alt="PLS SHOP Image 1" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
-                                    <img src="https://tr.rbxcdn.com/180DAY-72ba5506155976dea211f39161c3d666/150/150/Image/Png/noFilter" alt="PLS SHOP Image 2" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
-                                    <img src="https://tr.rbxcdn.com/180DAY-8662445b6217e321e21bb0d17ae48e6e/150/150/Image/Png/noFilter" alt="PLS SHOP Image 3" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                    <a href="https://tr.rbxcdn.com/180DAY-1cfeaafa7b7cdd379d8f72b1f3a1b105/420/420/Image/Png/noFilter" data-fancybox="gallery-pls-shop">
+                                        <img src="https://tr.rbxcdn.com/180DAY-1cfeaafa7b7cdd379d8f72b1f3a1b105/150/150/Image/Png/noFilter" alt="Screenshot of 'PLS SHOP!' game with a colorful shop booth" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                    </a>
+                                    <a href="https://tr.rbxcdn.com/180DAY-72ba5506155976dea211f39161c3d666/420/420/Image/Png/noFilter" data-fancybox="gallery-pls-shop">
+                                        <img src="https://tr.rbxcdn.com/180DAY-72ba5506155976dea211f39161c3d666/150/150/Image/Png/noFilter" alt="Screenshot of 'PLS SHOP!' game showing various player-built shops" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                    </a>
+                                    <a href="https://tr.rbxcdn.com/180DAY-8662445b6217e321e21bb0d17ae48e6e/420/420/Image/Png/noFilter" data-fancybox="gallery-pls-shop">
+                                        <img src="https://tr.rbxcdn.com/180DAY-8662445b6217e321e21bb0d17ae48e6e/150/150/Image/Png/noFilter" alt="Overhead view of 'PLS SHOP!' game with multiple player characters" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <hr class="border-gray-200">
 
-                        <!-- Project: Tower of Explosions -->
+                        <!-- Project Entry: Tower of Explosions -->
                         <div class="flex flex-col md:flex-row gap-6">
                             <div class="flex-shrink-0 flex justify-center md:justify-start">
+                                <!-- Icon: Code for Scripting (Heroicons, kept as it's clear) -->
                                 <div class="bg-red-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
-                                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 12" />
+                                    </svg>
                                 </div>
                             </div>
                             <div class="flex-1 content-prose">
                                 <h3 class="text-xl font-bold mt-0">Tower of Explosions</h3>
                                 <p class="text-md font-medium text-gray-700 !-mt-2">Main Scripter | Builder | GUI at Greater Studios</p>
-                                <p class="text-sm text-gray-500 !-mt-3">Jan 2023 - Present</p>
-                                <h1>💥 Tower of Explosions Project</h1>
+                                <h4>💥 Tower of Explosions Project</h4>
                                 <p>In this game you try to reach the top of a randomly generated tower filled with challenging stages. In the middle of every round, bombs drop and players have to try and avoid them.</p>
                                 <p>My job in this game was mainly to script but also to build.</p>
                                 <p>I scripted the <em>main framework</em> of the game that made it work and also many other parts of the game. I also created and scripted the entire crate system and I created all the different halos. Some of the halos also have effects e.g the hacker halo, forest halo, dizzy halo etc. I also made some of the stages. I scripted most of the GUI in the game.</p>
-                                <h2><a href="https://www.roblox.com/games/12504463969/HALOS-Tower-of-Explosions" target="_blank" rel="noopener noreferrer">💥 Tower of Explosions</a></h2>
+                                <!-- External Link Heading is H3 -->
+                                <h3><a href="https://www.roblox.com/games/12504463969/HALOS-Tower-of-Explosions" target="_blank" rel="noopener noreferrer">💥 Tower of Explosions</a></h3>
                                 <p>We also have a Discord Community Server attached to the game.</p>
                                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 mt-4">
-                                    <img src="https://tr.rbxcdn.com/180DAY-82e33d4fde9a4ee178de83ddc2a29f3b/150/150/Image/Png/noFilter" alt="Tower of Explosions Image 1" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
-                                    <img src="https://tr.rbxcdn.com/180DAY-bd8bbdbda8c5fe31df7121d5987305b1/150/150/Image/Png/noFilter" alt="Tower of Explosions Image 2" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
-                                    <img src="https://tr.rbxcdn.com/180DAY-16f9adf7921ece453dda6013b9caac61/150/150/Image/Png/noFilter" alt="Tower of Explosions Image 3" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
-                                    <img src="https://tr.rbxcdn.com/180DAY-2235064d26bb86f65429e468799fa252/150/150/Image/Png/noFilter" alt="Tower of Explosions Image 4" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
-                                    <img src="https://tr.rbxcdn.com/180DAY-8f2170dfb6c8f49ec732230a96428954/150/150/Image/Png/noFilter" alt="Tower of Explosions Image 5" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                    <a href="https://tr.rbxcdn.com/180DAY-82e33d4fde9a4ee178de83ddc2a29f3b/420/420/Image/Png/noFilter" data-fancybox="gallery-tower-explosions">
+                                        <img src="https://tr.rbxcdn.com/180DAY-82e33d4fde9a4ee178de83ddc2a29f3b/150/150/Image/Png/noFilter" alt="Screenshot of 'Tower of Explosions' game with a vibrant obby stage" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                    </a>
+                                    <a href="https://tr.rbxcdn.com/180DAY-bd8bbdbda8c5fe31df7121d5987305b1/420/420/Image/Png/noFilter" data-fancybox="gallery-tower-explosions">
+                                        <img src="https://tr.rbxcdn.com/180DAY-bd8bbdbda8c5fe31df7121d5987305b1/150/150/Image/Png/noFilter" alt="In-game screenshot of a player on a platform in 'Tower of Explosions'" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                    </a>
+                                    <a href="https://tr.rbxcdn.com/180DAY-16f9adf7921ece453dda6013b9caac61/420/420/Image/Png/noFilter" data-fancybox="gallery-tower-explosions">
+                                        <img src="https://tr.rbxcdn.com/180DAY-16f9adf7921ece453dda6013b9caac61/150/150/Image/Png/noFilter" alt="Gameplay screenshot showing multiple players on a tower stage" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                    </a>
+                                    <a href="https://tr.rbxcdn.com/180DAY-2235064d26bb86f65429e468799fa252/420/420/Image/Png/noFilter" data-fancybox="gallery-tower-explosions">
+                                        <img src="https://tr.rbxcdn.com/180DAY-2235064d26bb86f65429e468799fa252/150/150/Image/Png/noFilter" alt="Image showing a 'Tower of Explosions' game lobby with interactive elements" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                    </a>
+                                    <a href="https://tr.rbxcdn.com/180DAY-8f2170dfb6c8f49ec732230a96428954/420/420/Image/Png/noFilter" data-fancybox="gallery-tower-explosions">
+                                        <img src="https://tr.rbxcdn.com/180DAY-8f2170dfb6c8f49ec732230a96428954/150/150/Image/Png/noFilter" alt="Close-up of a decorative halo item in 'Tower of Explosions'" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                    </a>
                                 </div>
                             </div>
                         </div>
 
                         <hr class="border-gray-200">
 
-                         <!-- Project: Long Jump Obby -->
+                         <!-- Project Entry: Long Jump Obby -->
                         <div class="flex flex-col md:flex-row gap-6">
                            <div class="flex-shrink-0 flex justify-center md:justify-start">
+                                <!-- Icon: Footprints for Obby/Jump Games (Heroicons, kept as it's clear) -->
                                 <div class="bg-purple-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
-                                     <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6.75 12 3m0 0-3.75 3.75M12 3v11.25m-4.5 9H19.5a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5H4.5A2.25 2.25 0 0 0 2.25 6.75v11.25a2.25 2.25 0 0 0 2.25 2.25h13.5Z" />
+                                      </svg>
                                 </div>
                             </div>
                             <div class="flex-1 content-prose">
                                 <h3 class="text-xl font-bold mt-0">Long Jump Difficulty Chart Obby</h3>
                                 <p class="text-md font-medium text-gray-700 !-mt-2">Creator</p>
-                                <p class="text-sm text-gray-500 !-mt-3">Dec 2022 - Present</p>
-                                <h1>Stud Long Jump Difficulty Chart Obby Project!</h1>
+                                <h4>Stud Long Jump Difficulty Chart Obby Project!</h4>
                                 <p>In this game players can test their skill by seeing how far they can jump in this obby. The obby is categorised into different difficulties, progressively getting harder as the players beat the stages.</p>
                                 <p>I entirely scripted and built the game. One interesting part of this game that I had to script was the automatic generation of the stages. There is only one stage template that is duplicated and categorised into different difficulties in one script. I had to use <em>nth term</em> to correctly position each platform and stage.</p>
-                                <p><a href="https://www.roblox.com/games/11933559184/Stud-Long-Jump-Difficulty-Chart-Obby" target="_blank" rel="noopener noreferrer">Stud Long Jump Difficulty Chart Obby</a></p>
+                                <!-- External Link Heading is H3 -->
+                                <h3><a href="https://www.roblox.com/games/11933559184/Stud-Long-Jump-Difficulty-Chart-Obby" target="_blank" rel="noopener noreferrer">Stud Long Jump Difficulty Chart Obby</a></h3>
                                 <div class="grid grid-cols-3 sm:grid-cols-4 gap-4 mt-4">
-                                    <img src="https://tr.rbxcdn.com/180DAY-f35306e915678c5e8a35d819b684fd68/150/150/Image/Png/noFilter" alt="Long Jump Obby Image 1" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
-                                    <img src="https://tr.rbxcdn.com/180DAY-cc5de6f300f63e499f1580ee13582413/150/150/Image/Png/noFilter" alt="Long Jump Obby Image 2" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                    <a href="https://tr.rbxcdn.com/180DAY-f35306e915678c5e8a35d819b684fd68/420/420/Image/Png/noFilter" data-fancybox="gallery-long-jump">
+                                        <img src="https://tr.rbxcdn.com/180DAY-f35306e915678c5e8a35d819b684fd68/150/150/Image/Png/noFilter" alt="Screenshot of 'Long Jump Difficulty Chart Obby' showing long platforms" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                    </a>
+                                    <a href="https://tr.rbxcdn.com/180DAY-cc5de6f300f63e499f1580ee13582413/420/420/Image/Png/noFilter" data-fancybox="gallery-long-jump">
+                                        <img src="https://tr.rbxcdn.com/180DAY-cc5de6f300f63e499f1580ee13582413/150/150/Image/Png/noFilter" alt="Another screenshot of 'Long Jump Difficulty Chart Obby' with varied platform designs" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                    </a>
                                 </div>
                             </div>
                         </div>
                         
                         <hr class="border-gray-200">
                          
-                        <!-- Project: How far can you jump -->
+                        <!-- Project Entry: How far can you jump -->
                         <div class="flex flex-col md:flex-row gap-6">
                            <div class="flex-shrink-0 flex justify-center md:justify-start">
+                                <!-- Updated Icon: Rocket for Jump/Speed Game (Lucide) -->
                                 <div class="bg-yellow-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
-                                     <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rocket w-7 h-7">
+                                        <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c1.26-1.5 2-2 2-2L13.4 2.3c-.4-.4-1-.4-1.4 0L6.3 8.2c-1.7 1.7-2 4.4-.9 6.2Z"/>
+                                        <path d="M7.8 13.4 2.3 18.9c-.4.4-.4 1 0 1.4s1 .4 1.4 0L9.2 14.8"/>
+                                        <path d="m14.3 14.3 6.4-6.4c.4-.4.4-1 0-1.4s-1-.4-1.4 0L12.9 12.9"/>
+                                        <path d="M19.5 21a2 2 0 0 0 2-2 2 2 0 0 0-2-2 2 2 0 0 0-2 2c0 1.1.9 2 2 2Z"/>
+                                        <path d="M14.8 14.8 19 19"/>
+                                    </svg>
                                 </div>
                             </div>
                             <div class="flex-1 content-prose">
                                 <h3 class="text-xl font-bold mt-0">🚀 How far can you jump!</h3>
                                 <p class="text-md font-medium text-gray-700 !-mt-2">Creator</p>
-                                <p class="text-sm text-gray-500 !-mt-3">Oct 2022 - Present</p>
-                                <h1>🚀 How far can you jump Project!</h1>
+                                <h4>🚀 How far can you jump Project!</h4>
                                 <p>In this game, you can run across a runway then jump at the end. Players have to try and reach as far as they can, and they can achieve this by buying upgrades in the shop.</p>
                                 <p>The game was entirely scripted by me and also entirely built by me.</p>
-                                <h2><a href="https://www.roblox.com/games/11273527485/FREE-ADMIN-How-far-can-you-jump" target="_blank" rel="noopener noreferrer">🚀 How far can you jump!</a></h2>
+                                <!-- External Link Heading is H3 -->
+                                <h3><a href="https://www.roblox.com/games/11273527485/FREE-ADMIN-How-far-can-you-jump" target="_blank" rel="noopener noreferrer">🚀 How far can you jump!</a></h3>
                                 <div class="grid grid-cols-3 sm:grid-cols-4 gap-4 mt-4">
-                                     <img src="https://tr.rbxcdn.com/180DAY-97eb674934440ac26d84f73a5be01705/150/150/Image/Png/noFilter" alt="How far can you jump Image 1" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                     <a href="https://tr.rbxcdn.com/180DAY-97eb674934440ac26d84f73a5be01705/420/420/Image/Png/noFilter" data-fancybox="gallery-how-far-jump">
+                                         <img src="https://tr.rbxcdn.com/180DAY-97eb674934440ac26d84f73a5be01705/150/150/Image/Png/noFilter" alt="Screenshot of 'How far can you jump!' game with a long runway" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                    </a>
                                 </div>
                             </div>
                         </div>
 
                         <hr class="border-gray-200">
 
-                        <!-- Project: Noob's Difficulty Chart Obby -->
+                        <!-- Project Entry: Noob's Difficulty Chart Obby -->
                         <div class="flex flex-col md:flex-row gap-6">
                            <div class="flex-shrink-0 flex justify-center md:justify-start">
+                                <!-- Updated Icon: Blocks for Obby Kit (Lucide) -->
                                 <div class="bg-indigo-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
-                                     <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-blocks w-7 h-7">
+                                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                        <path d="m3 7.6 7 4.04v8.11"/>
+                                        <path d="m21 7.6-7 4.04v8.11"/>
+                                        <path d="m7.5 12.5 7 4.04"/>
+                                        <path d="m12 2.6v17.4"/>
+                                    </svg>
                                 </div>
                             </div>
                             <div class="flex-1 content-prose">
                                 <h3 class="text-xl font-bold mt-0">Noob's Difficulty Chart Obby</h3>
                                 <p class="text-md font-medium text-gray-700 !-mt-2">Creator at The Noob's</p>
-                                <p class="text-sm text-gray-500 !-mt-3">Oct 2022 - Present</p>
-                                <h1>Noob's Difficulty Chart Obby Project!</h1>
+                                <h4>Noob's Difficulty Chart Obby Project!</h4>
                                 <p>This game is a classic Difficulty Chart Obby. Players make their way through challenging stages that progressively get harder. There are multiple difficulties and there are still some more to come!</p>
                                 <p>For this game I am the the Main Scripter and Main Builder. Others have helped with some of the stages as well. I scripted the main backbone of the game and everything else such as GUI, Stage Transfer etc. I also made most of the stages. I also made all of the unique obby parts. An interesting part about them is that, I made a script that makes it so, if you name a part a specific name, it becomes that unique obby part.</p>
                                 <p>e.g If you name a part "SpinningPart", and inside the part you put an axis value determining which axis it is to spin on and a speed value determining the speed, it automatically makes the part work without the need of adding any more scripts.</p>
                                 <p>It can be done with many other obby parts as well such as: "PusherPart", "KillPart", "DamageBrick" etc.</p>
                                 <p>I made a game that showcases all of this and you can see it <strong><a href="https://www.roblox.com/games/12008992017/Elements-Obby-Kit-Showcase" target="_blank" rel="noopener noreferrer">here</a></strong>.</p>
                                 <h3>This game is still an ongoing project so more stages are to come soon!</h3>
-                                <h2><a href="https://www.roblox.com/games/11291357683/Noobs-Difficulty-Chart-Obby-WIP" target="_blank" rel="noopener noreferrer">Noob's Difficulty Chart Obby</a></h2>
+                                <!-- External Link Heading is H3 -->
+                                <h3><a href="https://www.roblox.com/games/11291357683/Noobs-Difficulty-Chart-Obby-WIP" target="_blank" rel="noopener noreferrer">Noob's Difficulty Chart Obby</a></h3>
                                 <div class="grid grid-cols-3 sm:grid-cols-4 gap-4 mt-4">
-                                     <img src="https://tr.rbxcdn.com/180DAY-feaf0c9d6e8b29cd74df02d82f91f5fd/150/150/Image/Png/noFilter" alt="Noob's DCO Image 1" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                     <a href="https://tr.rbxcdn.com/180DAY-feaf0c9d6e8b29cd74df02d82f91f5fd/420/420/Image/Png/noFilter" data-fancybox="gallery-noobs-dco">
+                                         <img src="https://tr.rbxcdn.com/180DAY-feaf0c9d6e8b29cd74df02d82f91f5fd/150/150/Image/Png/noFilter" alt="Screenshot of 'Noob's Difficulty Chart Obby' showing diverse obby stages" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                    </a>
                                 </div>
                             </div>
                         </div>
 
                         <hr class="border-gray-200">
 
-                        <!-- Project: UGC Portfolio -->
+                        <!-- Project Entry: UGC Portfolio -->
                         <div class="flex flex-col md:flex-row gap-6">
                            <div class="flex-shrink-0 flex justify-center md:justify-start">
+                                <!-- Icon: Hat/Star for UGC Portfolio (Heroicons, kept as it's clear) -->
                                 <div class="bg-pink-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
-                                     <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 3.75l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.897 16.206l-1.087.354a3.75 3.75 0 0 0-2.072 2.072l-.354 1.088a.75.75 0 0 0 1.396.653l.354-1.088a2.25 2.25 0 0 1 1.243-1.243l1.088-.354a.75.75 0 0 0-.653-1.396Z" />
+                                      </svg>
                                 </div>
                             </div>
                             <div class="flex-1 content-prose">
                                 <h3 class="text-xl font-bold mt-0">UGC Portfolio</h3>
                                 <p class="text-md font-medium text-gray-700 !-mt-2">Modeller, Texturer</p>
-                                <p class="text-sm text-gray-500 !-mt-3">Mar 2022 - Present</p>
-                                <h1>⭐ My UGC Portfolio ⭐</h1>
+                                <h4>⭐ My UGC Portfolio ⭐</h4>
                                 <p>Here I am showcasing some of my creations. I'm trying to get better and eventually get into the <strong>UGC Program!</strong></p>
                                 <h3>I hope you like them!</h3>
                                 <div class="grid grid-cols-3 sm:grid-cols-4 gap-4 mt-4">
-                                     <img src="https://tr.rbxcdn.com/180DAY-cc004d432851804d54111de9a47accca/150/150/Image/Png/noFilter" alt="UGC Example 1" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
-                                     <img src="https://tr.rbxcdn.com/180DAY-99ee1a6b9fba375f9497359b5c022606/150/150/Image/Png/noFilter" alt="UGC Example 2" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
-                                     <img src="https://tr.rbxcdn.com/180DAY-f3d354111c2926972cb8798285842ba9/150/150/Image/Png/noFilter" alt="UGC Example 3" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
-                                     <img src="https://tr.rbxcdn.com/180DAY-2c4e650341e206f42cc7eea10164874a/150/150/Image/Png/noFilter" alt="UGC Example 4" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                     <a href="https://tr.rbxcdn.com/180DAY-cc004d432851804d54111de9a47accca/420/420/Image/Png/noFilter" data-fancybox="gallery-ugc">
+                                        <img src="https://tr.rbxcdn.com/180DAY-cc004d432851804d54111de9a47accca/150/150/Image/Png/noFilter" alt="Roblox UGC concept: a futuristic helmet with glowing elements" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                     </a>
+                                     <a href="https://tr.rbxcdn.com/180DAY-99ee1a6b9fba375f9497359b5c022606/420/420/Image/Png/noFilter" data-fancybox="gallery-ugc">
+                                        <img src="https://tr.rbxcdn.com/180DAY-99ee1a6b9fba375f9497359b5c022606/150/150/Image/Png/noFilter" alt="Roblox UGC concept: a backpack with mechanical wings" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                     </a>
+                                     <a href="https://tr.rbxcdn.com/180DAY-f3d354111c2926972cb8798285842ba9/420/420/Image/Png/noFilter" data-fancybox="gallery-ugc">
+                                        <img src="https://tr.rbxcdn.com/180DAY-f3d354111c2926972cb8798285842ba9/150/150/Image/Png/noFilter" alt="Roblox UGC concept: a stylized crown with intricate details" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                     </a>
+                                     <a href="https://tr.rbxcdn.com/180DAY-2c4e650341e206f42cc7eea10164874a/420/420/Image/Png/noFilter" data-fancybox="gallery-ugc">
+                                        <img src="https://tr.rbxcdn.com/180DAY-2c4e650341e206f42cc7eea10164874a/150/150/Image/Png/noFilter" alt="Roblox UGC concept: a pair of glowing sci-fi glasses" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                     </a>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <hr class="border-gray-200">
 
-                        <!-- Project: Race A Friend! -->
+                        <!-- Project Entry: Race A Friend! -->
                         <div class="flex flex-col md:flex-row gap-6">
                            <div class="flex-shrink-0 flex justify-center md:justify-start">
+                                <!-- Icon: Trophy for Racing/Simulator Games (Heroicons, kept as it's clear) -->
                                 <div class="bg-teal-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
-                                     <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25H18a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 18 4.5H6A2.25 2.25 0 0 0 3.75 6.75v11.25a2.25 2.25 0 0 0 2.25 2.25Z" />
+                                      </svg>
                                 </div>
                             </div>
                             <div class="flex-1 content-prose">
                                 <h3 class="text-xl font-bold mt-0">Race A Friend!</h3>
                                 <p class="text-md font-medium text-gray-700 !-mt-2">Scripter at Soap!</p>
-                                <p class="text-sm text-gray-500 !-mt-3">Jul 2023 - Sep 2023</p>
-                                <h1>🏁 Race A Friend Project!</h1>
+                                <h4>🏁 Race A Friend Project!</h4>
                                 <p>This was a <strong>simulator</strong> type project. In this game, you gain speed by training on treadmills and you can then race different NPCs (that are dressed as your friends) to earn wins. You can then hatch pets with these wins and go to different zones.</p>
                                 <p>My job in this game was to help <strong>fix bugs</strong> and to add <strong>new features</strong> that made the game easier to play. I also helped in the <strong>scripting</strong> of <strong>new zones</strong> and some of the framework of the game.</p>
                                 <p>There is also another game uploaded by the same group (Soap!) called <em><strong>"Skate Battle Simulator"</strong></em> which is pretty much the same concept but with skateboards. The code was transferred to that game which means I have also played a part in there.</p>
                                 <p>The <em>'Soap!'</em> group also has a <em><strong>Discord community server.</strong></em> I am currently part of the <strong>Administration Team</strong> and I help out our players who require assistance and I also help with other things.</p>
-                                <h2><a href="https://www.roblox.com/games/14018688391/Race-A-Friend" target="_blank" rel="noopener noreferrer">Race A Friend!</a></h2>
-                                <h2><a href="https://www.roblox.com/games/14555484666/Skate-Battle-Simulator" target="_blank" rel="noopener noreferrer">Skate Battle Simulator</a></h2>
-                                <h1><a href="https://www.roblox.com/groups/17016662/Soap/" target="_blank" rel="noopener noreferrer">Soap!</a></h1>
-                                <!-- The community server link was not provided in the source -->
+                                <!-- External Link Headings are H3 -->
+                                <h3><a href="https://www.roblox.com/games/14018688391/Race-A-Friend" target="_blank" rel="noopener noreferrer">Race A Friend!</a></h3>
+                                <h3><a href="https://www.roblox.com/games/14555484666/Skate-Battle-Simulator" target="_blank" rel="noopener noreferrer">Skate Battle Simulator</a></h3>
+                                <h3><a href="https://www.roblox.com/groups/17016662/Soap/" target="_blank" rel="noopener noreferrer">Soap!</a></h3>
                                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 mt-4">
-                                     <img src="https://tr.rbxcdn.com/180DAY-b1d92db52605f4f475881790a80b9bfb/150/150/Image/Png/noFilter" alt="Race A Friend Image 1" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
-                                     <img src="https://tr.rbxcdn.com/180DAY-fd1ce30e422858e85d605c75e762db8b/150/150/Image/Png/noFilter" alt="Race A Friend Image 2" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
-                                     <img src="https://tr.rbxcdn.com/180DAY-72088a6410e349e6c783004442e8bf32/150/150/Image/Png/noFilter" alt="Race A Friend Image 3" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
-                                     <img src="https://tr.rbxcdn.com/180DAY-3d6e34247a73d75323d3e77cdf0bcb18/150/150/Image/Png/noFilter" alt="Race A Friend Image 4" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
-                                     <img src="https://tr.rbxcdn.com/180DAY-921aa1f7eba1f3e1c2d133c2f3feb833/150/150/Image/Png/noFilter" alt="Race A Friend Image 5" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+                                     <a href="https://tr.rbxcdn.com/180DAY-b1d92db52605f4f475881790a80b9bfb/420/420/Image/Png/noFilter" data-fancybox="gallery-race-friend">
+                                        <img src="https://tr.rbxcdn.com/180DAY-b1d92db52605f4f475881790a80b9bfb/150/150/Image/Png/noFilter" alt="Screenshot of 'Race A Friend!' game showcasing characters on a racetrack" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                     </a>
+                                     <a href="https://tr.rbxcdn.com/180DAY-fd1ce30e422858e85d605c75e762db8b/420/420/Image/Png/noFilter" data-fancybox="gallery-race-friend">
+                                        <img src="https://tr.rbxcdn.com/180DAY-fd1ce30e422858e85d605c75e762db8b/150/150/Image/Png/noFilter" alt="Close-up of a character racing in 'Race A Friend!'" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                     </a>
+                                     <a href="https://tr.rbxcdn.com/180DAY-72088a6410e349e6c783004442e8bf32/420/420/Image/Png/noFilter" data-fancybox="gallery-race-friend">
+                                        <img src="https://tr.rbxcdn.com/180DAY-72088a6410e349e6c783004442e8bf32/150/150/Image/Png/noFilter" alt="Screenshot of the 'Race A Friend!' game showing multiple racing lanes" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                    </a>
+                                     <a href="https://tr.rbxcdn.com/180DAY-3d6e34247a73d75323d3e77cdf0bcb18/420/420/Image/Png/noFilter" data-fancybox="gallery-race-friend">
+                                        <img src="https://tr.rbxcdn.com/180DAY-3d6e34247a73d75323d3e77cdf0bcb18/150/150/Image/Png/noFilter" alt="Overhead view of the 'Race A Friend!' game with a colorful environment" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                     </a>
+                                     <a href="https://tr.rbxcdn.com/180DAY-921aa1f7eba1f3e1c2d133c2f3feb833/420/420/Image/Png/noFilter" data-fancybox="gallery-race-friend">
+                                        <img src="https://tr.rbxcdn.com/180DAY-921aa1f7eba1f3e1c2d133c2f3feb833/150/150/Image/Png/noFilter" alt="Game screenshot of a shop area in 'Race A Friend!'" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300" loading="lazy">
+                                     </a>
                                 </div>
                             </div>
                         </div>
@@ -311,11 +590,37 @@
             </main>
         </div>
         
-        <!-- Footer -->
+        <!-- Footer Section -->
         <footer class="text-center mt-12 py-6 border-t border-gray-200">
-            <p class="text-gray-500">&copy; 2024 elementerzz. All rights reserved.</p>
+            <p class="text-gray-500">&copy; 2025 elementerzz. All rights reserved.</p>
         </footer>
 
+    </div>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="hideContactModal()">&times;</span>
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Contact elementerzz</h3>
+            <div class="contact-info space-y-4">
+                <!-- Roblox Contact Card -->
+                <div class="roblox-card contact-card">
+                    <!-- Roblox Icon SVG (Simplified, clean) -->
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 0L0 6V18L12 24L24 18V6L12 0ZM12 2.309L21.732 7.747L12 13.185L2.268 7.747L12 2.309ZM2 8.423V16.577L12 22.015V13.861L2 8.423ZM22 8.423L12 13.861V22.015L22 16.577V8.423Z"/>
+                    </svg>
+                    <span>Roblox: <a href="https://www.roblox.com/users/profile?username=elementerzz" target="_blank" rel="noopener noreferrer">@elementerzz</a></span>
+                </div>
+                <!-- Discord Contact Card -->
+                <div class="discord-card contact-card">
+                    <!-- Discord Icon SVG (Simplified, clean) -->
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.25 0H3.75C1.679 0 0 1.791 0 3.75V24L5.25 18.75H20.25C22.321 18.75 24 17.039 24 15V3.75C24 1.791 22.321 0 20.25 0ZM15.75 12.75C14.716 12.75 13.875 11.909 13.875 10.875C13.875 9.841 14.716 9 15.75 9C16.784 9 17.625 9.841 17.625 10.875C17.625 11.909 16.784 12.75 15.75 12.75ZM8.25 12.75C7.216 12.75 6.375 11.909 6.375 10.875C6.375 9.841 7.216 9 8.25 9C9.284 9 10.125 9.841 10.125 10.875C10.125 11.909 9.284 12.75 8.25 12.75Z"/>
+                    </svg>
+                    <span>Discord: @elementerzz</span>
+                </div>
+            </div>
+        </div>
     </div>
 
 </body>
