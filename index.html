@@ -172,10 +172,53 @@
         .discord-card {
             background-color: var(--color-discord-purple);
             color: var(--color-text-light);
+            position: relative; /* For positioning copy message */
         }
         .discord-card svg {
             fill: var(--color-text-light);
         }
+
+        .discord-copy-btn {
+            background: rgba(255, 255, 255, 0.2); /* Slightly transparent white */
+            color: var(--color-text-light);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin-left: 15px; /* Spacing from username */
+            transition: background 0.2s ease, transform 0.1s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px; /* Space between text and icon */
+        }
+        .discord-copy-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+        .discord-copy-btn:active {
+            transform: translateY(0);
+        }
+
+        .copy-message {
+            position: absolute;
+            bottom: -30px; /* Position below the card */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50; /* Green for success */
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            opacity: 0;
+            transition: opacity 0.3s ease-out;
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+        .copy-message.show {
+            opacity: 1;
+        }
+
         /* General content box animations */
         .content-box {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -213,6 +256,73 @@
           modal.style.display = 'none';
       }
 
+      /**
+       * Copies the Discord username to the clipboard and shows a success message.
+       */
+      function copyDiscordUsername() {
+          const username = "elementerzz"; // Your Discord username
+          const copyMessage = document.getElementById('discordCopyMessage');
+
+          // Use the Clipboard API if available and secure context, fallback to execCommand
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(username)
+                  .then(() => {
+                      copyMessage.textContent = 'Copied!';
+                      copyMessage.classList.add('show');
+                      setTimeout(() => {
+                          copyMessage.classList.remove('show');
+                      }, 1500); // Hide message after 1.5 seconds
+                  })
+                  .catch(err => {
+                      console.error('Failed to copy text using Clipboard API: ', err);
+                      // Fallback to execCommand if Clipboard API fails or is not available
+                      fallbackCopyTextToClipboard(username, copyMessage);
+                  });
+          } else {
+              // Fallback for older browsers or insecure contexts
+              fallbackCopyTextToClipboard(username, copyMessage);
+          }
+      }
+
+      /**
+       * Fallback function for copying text to clipboard using document.execCommand.
+       * @param {string} textToCopy The text to copy.
+       * @param {HTMLElement} messageElement The element to display the message.
+       */
+      function fallbackCopyTextToClipboard(textToCopy, messageElement) {
+          const textArea = document.createElement("textarea");
+          textArea.value = textToCopy;
+
+          // Avoid scrolling to bottom
+          textArea.style.top = "0";
+          textArea.style.left = "0";
+          textArea.style.position = "fixed";
+
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+
+          try {
+              const successful = document.execCommand('copy');
+              const msg = successful ? 'Copied!' : 'Failed to copy!';
+              messageElement.textContent = msg;
+              messageElement.classList.add('show');
+              setTimeout(() => {
+                  messageElement.classList.remove('show');
+              }, 1500);
+          } catch (err) {
+              console.error('Fallback: Oops, unable to copy', err);
+              messageElement.textContent = 'Copy failed!';
+              messageElement.classList.add('show');
+              setTimeout(() => {
+                  messageElement.classList.remove('show');
+              }, 1500);
+          }
+
+          document.body.removeChild(textArea);
+      }
+
+
       // Add event listeners once the DOM is fully loaded
       document.addEventListener('DOMContentLoaded', () => {
           // Add 'loaded' class to body for fade-in effect
@@ -231,6 +341,9 @@
                   hideContactModal();
               }
           });
+
+          // Attach event listener for the Discord Copy button
+          document.getElementById('copyDiscordBtn').addEventListener('click', copyDiscordUsername);
       });
     </script>
 
@@ -291,6 +404,7 @@
                             <div class="flex-1 content-prose">
                                 <h3 class="text-xl font-bold mt-0">Graphic Design Examples</h3>
                                 <p class="text-md font-medium text-gray-700 !-mt-2">Graphic Designer</p>
+                                <!-- Removed timestamp line -->
                                 <h4>Here are some of my graphic design works!</h4>
                                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 mt-4">
                                     <a href="https://tr.rbxcdn.com/180DAY-bb6dec4ad7429ff02f71e88d5b0cb33b/420/420/Image/Png/noFilter" data-fancybox="gallery-graphic-design">
@@ -339,6 +453,7 @@
                             <div class="flex-1 content-prose">
                                 <h3 class="text-xl font-bold mt-0">PLS SHOP! (Donation Game)</h3>
                                 <p class="text-md font-medium text-gray-700 !-mt-2">Modeller at Greater Studios!</p>
+                                <!-- Removed timestamp line -->
                                 <h4>💸 PLS SHOP PROJECT</h4>
                                 <p>In this project that I helped work on, the main idea of the game is to go up to players' shops and donate to them.</p>
                                 <p>I helped by creating multiple assets for the game. Some of these assets include:</p>
@@ -380,6 +495,7 @@
                             <div class="flex-1 content-prose">
                                 <h3 class="text-xl font-bold mt-0">Tower of Explosions</h3>
                                 <p class="text-md font-medium text-gray-700 !-mt-2">Main Scripter | Builder | GUI at Greater Studios</p>
+                                <!-- Removed timestamp line -->
                                 <h4>💥 Tower of Explosions Project</h4>
                                 <p>In this game you try to reach the top of a randomly generated tower filled with challenging stages. In the middle of every round, bombs drop and players have to try and avoid them.</p>
                                 <p>My job in this game was mainly to script but also to build.</p>
@@ -422,6 +538,7 @@
                             <div class="flex-1 content-prose">
                                 <h3 class="text-xl font-bold mt-0">Long Jump Difficulty Chart Obby</h3>
                                 <p class="text-md font-medium text-gray-700 !-mt-2">Creator</p>
+                                <!-- Removed timestamp line -->
                                 <h4>Stud Long Jump Difficulty Chart Obby Project!</h4>
                                 <p>In this game players can test their skill by seeing how far they can jump in this obby. The obby is categorised into different difficulties, progressively getting harder as the players beat the stages.</p>
                                 <p>I entirely scripted and built the game. One interesting part of this game that I had to script was the automatic generation of the stages. There is only one stage template that is duplicated and categorised into different difficulties in one script. I had to use <em>nth term</em> to correctly position each platform and stage.</p>
@@ -457,6 +574,7 @@
                             <div class="flex-1 content-prose">
                                 <h3 class="text-xl font-bold mt-0">🚀 How far can you jump!</h3>
                                 <p class="text-md font-medium text-gray-700 !-mt-2">Creator</p>
+                                <!-- Removed timestamp line -->
                                 <h4>🚀 How far can you jump Project!</h4>
                                 <p>In this game, you can run across a runway then jump at the end. Players have to try and reach as far as they can, and they can achieve this by buying upgrades in the shop.</p>
                                 <p>The game was entirely scripted by me and also entirely built by me.</p>
@@ -489,6 +607,7 @@
                             <div class="flex-1 content-prose">
                                 <h3 class="text-xl font-bold mt-0">Noob's Difficulty Chart Obby</h3>
                                 <p class="text-md font-medium text-gray-700 !-mt-2">Creator at The Noob's</p>
+                                <!-- Removed timestamp line -->
                                 <h4>Noob's Difficulty Chart Obby Project!</h4>
                                 <p>This game is a classic Difficulty Chart Obby. Players make their way through challenging stages that progressively get harder. There are multiple difficulties and there are still some more to come!</p>
                                 <p>For this game I am the the Main Scripter and Main Builder. Others have helped with some of the stages as well. I scripted the main backbone of the game and everything else such as GUI, Stage Transfer etc. I also made most of the stages. I also made all of the unique obby parts. An interesting part about them is that, I made a script that makes it so, if you name a part a specific name, it becomes that unique obby part.</p>
@@ -513,14 +632,15 @@
                            <div class="flex-shrink-0 flex justify-center md:justify-start">
                                 <!-- Icon: Hat/Star for UGC Portfolio (Heroicons, kept as it's clear) -->
                                 <div class="bg-pink-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
-                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 3.75l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.897 16.206l-1.087.354a3.75 3.75 0 0 0-2.072 2.072l-.354 1.088a.75.75 0 0 0 1.396.653l.354-1.088a2.25 2.25 0 0 1 1.243-1.243l1.088-.354a.75.75 0 0 0-.653-1.396Z" />
+                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles w-7 h-7">
+                                        <path d="m12 3-1.912 5.813L3 12l7.088 3.188L12 21l1.912-5.813L21 12l-7.088-3.188L12 3Z"/>
                                       </svg>
                                 </div>
                             </div>
                             <div class="flex-1 content-prose">
                                 <h3 class="text-xl font-bold mt-0">UGC Portfolio</h3>
                                 <p class="text-md font-medium text-gray-700 !-mt-2">Modeller, Texturer</p>
+                                <!-- Removed timestamp line -->
                                 <h4>⭐ My UGC Portfolio ⭐</h4>
                                 <p>Here I am showcasing some of my creations. I'm trying to get better and eventually get into the <strong>UGC Program!</strong></p>
                                 <h3>I hope you like them!</h3>
@@ -556,6 +676,7 @@
                             <div class="flex-1 content-prose">
                                 <h3 class="text-xl font-bold mt-0">Race A Friend!</h3>
                                 <p class="text-md font-medium text-gray-700 !-mt-2">Scripter at Soap!</p>
+                                <!-- Removed timestamp line -->
                                 <h4>🏁 Race A Friend Project!</h4>
                                 <p>This was a <strong>simulator</strong> type project. In this game, you gain speed by training on treadmills and you can then race different NPCs (that are dressed as your friends) to earn wins. You can then hatch pets with these wins and go to different zones.</p>
                                 <p>My job in this game was to help <strong>fix bugs</strong> and to add <strong>new features</strong> that made the game easier to play. I also helped in the <strong>scripting</strong> of <strong>new zones</strong> and some of the framework of the game.</p>
@@ -592,7 +713,7 @@
         
         <!-- Footer Section -->
         <footer class="text-center mt-12 py-6 border-t border-gray-200">
-            <p class="text-gray-500">&copy; 2025 elementerzz. All rights reserved.</p>
+            <p class="text-gray-500">&copy; 2024 elementerzz. All rights reserved.</p>
         </footer>
 
     </div>
@@ -609,15 +730,21 @@
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 0L0 6V18L12 24L24 18V6L12 0ZM12 2.309L21.732 7.747L12 13.185L2.268 7.747L12 2.309ZM2 8.423V16.577L12 22.015V13.861L2 8.423ZM22 8.423L12 13.861V22.015L22 16.577V8.423Z"/>
                     </svg>
-                    <span>Roblox: <a href="https://www.roblox.com/users/profile?username=elementerzz" target="_blank" rel="noopener noreferrer">@elementerzz</a></span>
+                    <span>Roblox: <a href="https://www.roblox.com/users/profile?username=elementerzz" target="_blank" rel="noopener noreferrer">elementerzz</a></span>
                 </div>
-                <!-- Discord Contact Card -->
+                <!-- Discord Contact Card with Copy Button -->
                 <div class="discord-card contact-card">
                     <!-- Discord Icon SVG (Simplified, clean) -->
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20.25 0H3.75C1.679 0 0 1.791 0 3.75V24L5.25 18.75H20.25C22.321 18.75 24 17.039 24 15V3.75C24 1.791 22.321 0 20.25 0ZM15.75 12.75C14.716 12.75 13.875 11.909 13.875 10.875C13.875 9.841 14.716 9 15.75 9C16.784 9 17.625 9.841 17.625 10.875C17.625 11.909 16.784 12.75 15.75 12.75ZM8.25 12.75C7.216 12.75 6.375 11.909 6.375 10.875C6.375 9.841 7.216 9 8.25 9C9.284 9 10.125 9.841 10.125 10.875C10.125 11.909 9.284 12.75 8.25 12.75Z"/>
                     </svg>
-                    <span>Discord: @elementerzz</span>
+                    <span>Discord: elementerzz</span>
+                    <button id="copyDiscordBtn" class="discord-copy-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v2"/></svg>
+                        Copy
+                    </button>
+                    <!-- Message for copy success/failure -->
+                    <div id="discordCopyMessage" class="copy-message"></div>
                 </div>
             </div>
         </div>
