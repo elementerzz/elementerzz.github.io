@@ -1,0 +1,277 @@
+:root {
+	--color-roblox-blue: #00BFDD;
+	--color-roblox-dark-blue: #0050B4;
+	--color-discord-purple: #5865F2;
+	--color-discord-dark: #23272A;
+	--color-text-light: #fefefe;
+	/* For text on dark backgrounds */
+}
+
+body {
+	font-family: 'Inter', sans-serif;
+	background-color: #f0f2f5;
+	/* A light grey background for a professional look */
+	opacity: 0;
+	/* Hidden initially for fade-in effect */
+	transition: opacity 1s ease-in-out;
+}
+
+body.loaded {
+	opacity: 1;
+}
+
+/* Custom styles for content typography to match the original feel */
+.content-prose h1 {
+	/* This h1 is for the main page title, but within content-prose it should be lower */
+	font-size: 1.875rem;
+	/* 30px */
+	font-weight: 800;
+	margin-top: 1.5rem;
+	margin-bottom: 0.5rem;
+}
+
+.content-prose h2 {
+	/* Project section titles (e.g., "Graphic Design Examples") */
+	font-size: 1.5rem;
+	/* 24px */
+	font-weight: 700;
+	margin-top: 1.25rem;
+	margin-bottom: 0.5rem;
+}
+
+.content-prose h3 {
+	/* Sub-sections within projects (e.g., "💸 PLS SHOP PROJECT") */
+	font-size: 1.25rem;
+	/* 20px */
+	font-weight: 700;
+	margin-top: 1rem;
+	margin-bottom: 0.5rem;
+}
+
+.content-prose p {
+	font-size: 1rem;
+	/* 16px */
+	line-height: 1.75;
+	margin-bottom: 1rem;
+}
+
+.content-prose ul,
+.content-prose ol {
+	margin-left: 1.5rem;
+	margin-bottom: 1rem;
+	list-style-position: inside;
+}
+
+.content-prose li {
+	margin-bottom: 0.5rem;
+}
+
+.content-prose a {
+	color: #2563eb;
+	text-decoration: underline;
+	font-weight: 600;
+}
+
+.content-prose a:hover {
+	color: #1d4ed8;
+}
+
+/* Modal specific styles */
+.modal {
+	display: none;
+	/* Hidden by default */
+	position: fixed;
+	/* Stay in place */
+	z-index: 1000;
+	/* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%;
+	/* Full width */
+	height: 100%;
+	/* Full height */
+	overflow: auto;
+	/* Enable scroll if needed */
+	background-color: rgba(0, 0, 0, 0.6);
+	/* Darker overlay */
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	animation: fadeInOverlay 0.3s ease-out;
+}
+
+@keyframes fadeInOverlay {
+	from {
+		background-color: rgba(0, 0, 0, 0);
+	}
+
+	to {
+		background-color: rgba(0, 0, 0, 0.6);
+	}
+}
+
+.modal-content {
+	background-color: #fefefe;
+	padding: 30px;
+	/* More padding for a cleaner look */
+	border-radius: 12px;
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+	/* Stronger shadow */
+	max-width: 480px;
+	/* Slightly wider */
+	width: 90%;
+	position: relative;
+	text-align: center;
+	animation: fadeInScale 0.3s ease-out;
+	/* Pop-in animation */
+}
+
+@keyframes fadeInScale {
+	from {
+		opacity: 0;
+		transform: scale(0.9) translateY(-20px);
+	}
+
+	to {
+		opacity: 1;
+		transform: scale(1) translateY(0);
+	}
+}
+
+.close-button {
+	color: #888;
+	/* Softer grey */
+	position: absolute;
+	top: 15px;
+	right: 20px;
+	font-size: 30px;
+	font-weight: bold;
+	cursor: pointer;
+	line-height: 1;
+	transition: color 0.2s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+	color: #333;
+}
+
+.contact-card {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 15px 20px;
+	border-radius: 8px;
+	margin-bottom: 15px;
+	/* Spacing between cards */
+	font-weight: 600;
+	font-size: 1.1rem;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-card:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.contact-card svg {
+	margin-right: 12px;
+	width: 28px;
+	/* Larger icons */
+	height: 28px;
+}
+
+.roblox-card {
+	background-color: var(--color-roblox-blue);
+	color: var(--color-text-light);
+}
+
+.roblox-card svg {
+	fill: var(--color-text-light);
+	/* Fill for Roblox icon if it's a shape */
+	stroke: var(--color-text-light);
+	/* Stroke for Roblox icon if it's a path */
+}
+
+.roblox-card a {
+	color: var(--color-text-light);
+	text-decoration: none;
+	/* No underline by default, can add on hover */
+	transition: text-decoration 0.2s ease;
+}
+
+.roblox-card a:hover {
+	text-decoration: underline;
+}
+
+.discord-card {
+	background-color: var(--color-discord-purple);
+	color: var(--color-text-light);
+	position: relative;
+	/* For positioning copy message */
+}
+
+.discord-card svg {
+	fill: var(--color-text-light);
+}
+
+.discord-copy-btn {
+	background: rgba(255, 255, 255, 0.2);
+	/* Slightly transparent white */
+	color: var(--color-text-light);
+	border: none;
+	padding: 8px 12px;
+	border-radius: 6px;
+	font-size: 0.9rem;
+	font-weight: 500;
+	cursor: pointer;
+	margin-left: 15px;
+	/* Spacing from username */
+	transition: background 0.2s ease, transform 0.1s ease;
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	/* Space between text and icon */
+}
+
+.discord-copy-btn:hover {
+	background: rgba(255, 255, 255, 0.3);
+	transform: translateY(-1px);
+}
+
+.discord-copy-btn:active {
+	transform: translateY(0);
+}
+
+.copy-message {
+	position: absolute;
+	bottom: -30px;
+	/* Position below the card */
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #4CAF50;
+	/* Green for success */
+	color: white;
+	padding: 5px 10px;
+	border-radius: 5px;
+	font-size: 0.85rem;
+	opacity: 0;
+	transition: opacity 0.3s ease-out;
+	white-space: nowrap;
+	/* Prevent text wrapping */
+}
+
+.copy-message.show {
+	opacity: 1;
+}
+
+/* General content box animations */
+.content-box {
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.content-box:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
